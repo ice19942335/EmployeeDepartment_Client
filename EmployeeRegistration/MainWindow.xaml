@@ -1,0 +1,132 @@
+﻿<Window x:Class="EmployeeRegistration.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EmployeeRegistration"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="800" ResizeMode="NoResize" Closing="Window_Closing">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="49*"/>
+            <RowDefinition Height="285*"/>
+            <RowDefinition Height="237*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="50*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Employee" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="168,12,167,11" Height="26" Width="62"/>
+        <Label Content="Department" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Margin="161,12,162,11" Height="26" Width="74"/>
+        <ListView x:Name="lvEmployee" HorizontalAlignment="Stretch" Margin="10" Grid.Row="1" VerticalAlignment="Stretch" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" Width="125" 
+                                    DisplayMemberBinding="{Binding Name, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}"/>
+                    <GridViewColumn Header="Surename" Width="125"
+                                    DisplayMemberBinding="{Binding Surename, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}"/>
+                    <GridViewColumn Header="Salary" Width="120"
+                                    DisplayMemberBinding="{Binding Salary, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TextBox x:Name="tbNameEmployee" 
+                 HorizontalAlignment="Left" 
+                 Height="23" Margin="110,10,0,0" 
+                 Grid.Row="2" 
+                 TextWrapping="Wrap" 
+                 VerticalAlignment="Top" 
+                 Width="267" 
+                 Text="{Binding ElementName=lvEmployee, Path=SelectedItem.Name, Mode=OneWay}"
+                />
+        <TextBox x:Name="tbSurenameEmployee"
+                 HorizontalAlignment="Left"
+                 Height="23" 
+                 Margin="110,38,10,0"
+                 Grid.Row="2"
+                 TextWrapping="Wrap" 
+                 VerticalAlignment="Top"
+                 Width="267"
+                 Text="{Binding ElementName=lvEmployee, Path=SelectedItem.Surename, Mode=OneWay}"
+                 />
+        <TextBox x:Name="tbSalaryEmployee"
+                 HorizontalAlignment="Left"
+                 Height="23" Margin="110,66,10,0"
+                 Grid.Row="2"
+                 TextWrapping="Wrap"
+                 VerticalAlignment="Top"
+                 Width="267"
+                 Text="{Binding ElementName=lvEmployee, Path=SelectedItem.Salary, Mode=OneWay}"
+                 />
+        <Label x:Name="lblNameEmployee" Content="Name" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,6,292,164" Height="26" Width="95" Grid.Row="2"/>
+        <Label x:Name="lblSurenameEmployee" Content="Surename" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,34,292,136" Height="26" Width="95" Grid.Row="2"/>
+        <Label x:Name="lblSalaryEmployee" Content="Salary" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,62,292,108" Height="26" Width="95" Grid.Row="2"/>
+        <Label x:Name="lblDepartment" Content="Departments" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,92,292,78" Height="26" Width="95" Grid.Row="2"/>
+        <StackPanel HorizontalAlignment="Stretch" Height="39" Margin="10,147,10,0" Grid.Row="2" VerticalAlignment="Top" Orientation="Horizontal">
+            <Button x:Name="btnNewEmp" Content="New Employee" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="60,0" Width="100"/>
+            <Button x:Name="btnDeleteEmp" Content="Delete selected" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="7" Width="100"/>
+        </StackPanel>
+        <ListView x:Name="lvDepartment" 
+                  HorizontalAlignment="Stretch"
+                  Margin="10" Grid.Row="1"
+                  VerticalAlignment="Stretch" 
+                  Grid.Column="1">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" Width="120"
+                                    DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Location" Width="120"
+                                    DisplayMemberBinding="{Binding Location}"/>
+                    <GridViewColumn Header="Basic salary" Width="130"
+                                    DisplayMemberBinding="{Binding Salary}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TextBox x:Name="tbNameDepartment" 
+                 HorizontalAlignment="Left" 
+                 Height="23" 
+                 Margin="110,10,0,0" 
+                 Grid.Row="2" 
+                 TextWrapping="Wrap" 
+                 VerticalAlignment="Top" 
+                 Width="267" 
+                 Grid.Column="1" 
+                 Text="{Binding ElementName=lvDepartment, Path=SelectedItem.Name, Mode=OneWay}"
+                 />
+        <TextBox x:Name="tbLocationDepartment"
+                 HorizontalAlignment="Left"
+                 Height="23"
+                 Margin="110,38,0,0"
+                 Grid.Row="2"
+                 TextWrapping="Wrap"
+                 VerticalAlignment="Top"
+                 Width="267"
+                 Grid.Column="1"
+                 Text="{Binding ElementName=lvDepartment, Path=SelectedItem.Location, Mode=OneWay}"
+                 />
+        <TextBox x:Name="tbBasicSalaryDepartment"
+                 HorizontalAlignment="Left"
+                 Height="23"
+                 Margin="110,66,0,0"
+                 Grid.Row="2"
+                 TextWrapping="Wrap" 
+                 VerticalAlignment="Top"
+                 Width="267"
+                 Grid.Column="1"
+                 Text="{Binding ElementName=lvDepartment, Path=SelectedItem.Salary, Mode=OneWay}"
+                 />
+        <Label x:Name="lblNameDepartment" Content="Name" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,6,292,164" Height="26" Width="95" Grid.Row="2" Grid.Column="1"/>
+        <Label x:Name="lblLocationDepartment" Content="Location" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,34,292,136" Height="26" Width="95" Grid.Row="2" Grid.Column="1"/>
+        <Label x:Name="lblBasicSalaryDepartment" Content="Basic salary" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,62,292,108" Height="26" Width="95" Grid.Row="2" Grid.Column="1"/>
+        <StackPanel HorizontalAlignment="Stretch" Height="39" Margin="10,147,10,0" Grid.Row="2" VerticalAlignment="Top" Orientation="Horizontal" Grid.Column="1">
+            <Button x:Name="btnNewDep" Content="New Department" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="60,0" Width="100" />
+            <Button x:Name="btnDeleteDep" Content="Delete selected" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="7" Width="100"/>
+        </StackPanel>
+        <ComboBox x:Name="cbDepartmentsListEmp" IsManipulationEnabled="False" IsEditable="True" Text="Employee departments" HorizontalAlignment="Left" Margin="110,94,0,0" Grid.Row="2" VerticalAlignment="Top" Width="222"/>
+        <Button x:Name="btnAddDepToEMP" Content="Add" HorizontalAlignment="Left" Margin="337,125,0,0" Grid.Row="2" VerticalAlignment="Top" Width="40" RenderTransformOrigin="-4.225,2.05" Height="22"/>
+        <Button x:Name="btnDelDepFromEMP" Content="Del" HorizontalAlignment="Left" Margin="337,94,0,0" Grid.Row="2" VerticalAlignment="Top" Width="40" RenderTransformOrigin="0.216,0.5" Height="22"/>
+        <Label x:Name="lblDepartment_Copy" Content="Manage Departments" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,122,257,48" Height="26" Width="130" Grid.Row="2"/>
+        <ComboBox x:Name="cbDepartmentsList" IsManipulationEnabled="False" IsEditable="True" Text="Departments list" HorizontalAlignment="Left" Margin="145,125,0,0" Grid.Row="2" VerticalAlignment="Top" Width="187"/>
+
+    </Grid>
+</Window>
