@@ -1,4 +1,4 @@
-# Client 
+# Employee department (Client)
 
 ### Simple WPF project to demonstrate BASIC data transfer between Client and API
 
